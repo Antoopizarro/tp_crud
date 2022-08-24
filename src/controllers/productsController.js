@@ -55,9 +55,9 @@ const controller = {
 		// Do the magic
 		const productToEdit = loadProducts().find(product => product.id === +req.params.id);
 
-		return res.render('product-edit-form'), {
+		return res.render('product-edit-form', {
 			productToEdit
-		}
+		})
 	},
 	// Update - Method to update
 	update: (req, res) => {
