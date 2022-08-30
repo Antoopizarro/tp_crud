@@ -6,7 +6,7 @@ const controller = {
 	// Root - Show all products
 	index: (req, res) => {
 		// Do the magic
-		let products = loadProducts();
+		const products = loadProducts();
 		return res.render('products', {
 			products,
 			toThousand
@@ -16,7 +16,7 @@ const controller = {
 	// Detail - Detail from one product
 	detail: (req, res) => {
 		// Do the magic
-		let products = loadProducts();
+		const products = loadProducts();
 		let product = products.find(product => product.id === +req.params.id);
 		return res.render('detail', {
 			product,
@@ -34,7 +34,7 @@ const controller = {
 	store: (req, res) => {
 		// Do the magic
 		const {name, price, discount, description, category} = req.body;
-		let products = loadProducts();
+		const products = loadProducts();
 
 		const newProduct = {
 			id : products[products.length - 1].id + 1,
@@ -53,15 +53,17 @@ const controller = {
 	// Update - Form to edit
 	edit: (req, res) => {
 		// Do the magic
+		const products = loadProducts();
 		const productToEdit = loadProducts().find(product => product.id === +req.params.id);
-
 		return res.render('product-edit-form', {
-			productToEdit
+			productToEdit,
+			products
 		})
 	},
 	// Update - Method to update
 	update: (req, res) => {
 		// Do the magic
+		const products = loadProducts();
 		const {name, price, discount, description, category} = req.body;
 		let productsModify = loadProducts().map(product => {
 			if(product.id === +req.params.id){
@@ -78,7 +80,7 @@ const controller = {
 			return product;
 		});
 		storeProduct(productsModify);
-		return res.redirect('/products/detail' + req.params.id);
+		return res.redirect('/products/detail/' + req.params.id);
 	},
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
