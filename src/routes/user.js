@@ -9,6 +9,6 @@ const userValidations = require('../validations/userValidation');
 
 router
     .get('/register', userController.register)
-    .post('/register', userController.processRegister, userValidations)
+    .post('/register', userValidations ,userController.processRegister)
     
 module.exports = router;
