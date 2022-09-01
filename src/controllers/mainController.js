@@ -1,6 +1,7 @@
 const {loadProducts} = require('../data/dbmodule')
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
+
 const controller = {
 	index: (req, res) => {
 		// Do the magic
@@ -25,7 +26,7 @@ const controller = {
 			toThousand,
 			keywords
 		});
-	},
+	}
 };
 
 module.exports = controller;
